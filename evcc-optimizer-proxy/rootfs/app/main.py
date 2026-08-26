@@ -99,6 +99,7 @@ def index():
 
 
 if __name__ == '__main__':
+    from waitress import serve
     logger.info("Starting EVCC Optimizer Proxy...")
     logger.info(f"Target URL: {config.get('target_url')}")
-    app.run(host='0.0.0.0', port=8080, debug=(log_level == 'DEBUG'))
+    serve(app, host='0.0.0.0', port=8080)

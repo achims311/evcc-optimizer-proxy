@@ -8,8 +8,7 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 WORKDIR /app
 COPY rootfs/app/requirements.txt /app/
-RUN pip install --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application
 COPY rootfs/app/*.py /app/
