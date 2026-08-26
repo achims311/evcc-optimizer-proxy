@@ -26,8 +26,7 @@ Dein Home Assistant Addon für die EVCC Optimizer Request-Modifikation ist berei
 ```
 evcc-optimizer-proxy/
 ├── 📄 Konfiguration
-│   ├── addon.yaml              - Home Assistant Add-on Definition
-│   ├── config.yaml             - Standard-Konfiguration
+│   ├── config.yaml             - Home Assistant Add-on Definition
 │   ├── manifest.json           - Add-on Metadaten
 │   └── Dockerfile              - Docker Image
 │

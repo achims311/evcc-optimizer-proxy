@@ -2,8 +2,7 @@
 
 ```
 evcc-optimizer-proxy/
-├── addon.yaml                          # Home Assistant Add-on Konfiguration
-├── config.yaml                         # Standard-Konfigurationsdatei
+├── config.yaml                         # Home Assistant Add-on Konfiguration (Manifest)
 ├── manifest.json                       # Add-on Manifest
 ├── Dockerfile                          # Docker-Image Definition
 ├── .gitignore                          # Git Ignore Rules
@@ -45,7 +44,7 @@ evcc-optimizer-proxy/
 
 ## Wichtige Dateien
 
-### addon.yaml
+### config.yaml
 - Konfiguriert das Add-on für Home Assistant
 - Definiert Ports, Umgebungsvariablen, Konfigurationsoptionen
 - Angabe der Docker-Image-Architektur

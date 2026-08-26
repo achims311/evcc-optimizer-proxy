@@ -9,7 +9,7 @@ Dieses Repository ist ein Home Assistant Add-on Repository.
 ├── repository.yaml          # Home Assistant Repository Definition
 ├── README.md                # Überblick und Installationsanleitung
 ├── evcc-optimizer-proxy/    # Das Add-on Verzeichnis
-│   ├── addon.yaml           # Add-on Manifest für Home Assistant
+│   ├── config.yaml          # Add-on Manifest für Home Assistant
 │   ├── Dockerfile           # Docker Image Definition
 │   ├── rootfs/              # Dateien für das Container Image
 │   │   ├── app/             # Python Anwendung

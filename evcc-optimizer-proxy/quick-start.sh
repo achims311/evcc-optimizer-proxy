@@ -126,7 +126,7 @@ case $choice in
         echo ""
         echo "Überprüfe notwendige Dateien..."
         
-        required_files=("addon.yaml" "Dockerfile" "rootfs/app/main.py")
+        required_files=("config.yaml" "Dockerfile" "rootfs/app/main.py")
         all_exist=true
         
         for file in "${required_files[@]}"; do
@@ -229,8 +229,7 @@ echo "  - ./build.sh           - Docker Image bauen"
 echo "  - ./setup-docker-compose.sh - Docker Compose aufsetzen"
 echo ""
 echo "📝 Konfiguration:"
-echo "  - config.yaml          - Standardkonfiguration"
-echo "  - addon.yaml           - Home Assistant Add-on Definition"
+echo "  - config.yaml          - Home Assistant Add-on Definition"
 echo ""
 echo "Weitere Hilfe? Lese die README.md oder SETUP.md!"
 echo ""
