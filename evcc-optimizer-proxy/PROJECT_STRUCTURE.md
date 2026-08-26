@@ -82,7 +82,7 @@ evcc-optimizer-proxy/
 
 ### .github/workflows/
 - Automatische Docker-Image-Builds
-- Multi-Architektur-Support (amd64, aarch64, armhf, armv7, i386)
+- Multi-Architektur-Support (amd64, aarch64, armv7)
 - Auto-Release bei Git-Tags
 
 ## Abhängigkeiten

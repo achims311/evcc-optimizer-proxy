@@ -271,7 +271,7 @@ python test_client.py
 **Proxy-Auth:** NTLM (requests-ntlm)  
 **Docker Base:** python:3.12-slim  
 **Service Manager:** s6-overlay v3.1.6.2  
-**Multi-Arch:** amd64, aarch64, armhf, armv7, i386  
+**Multi-Arch:** amd64, aarch64, armv7  
 
 ## 📝 Lizenz
 

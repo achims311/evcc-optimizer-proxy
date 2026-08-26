@@ -21,8 +21,6 @@ jobs:
             build_arch: linux/amd64
           - arch: aarch64
             build_arch: linux/arm64
-          - arch: armhf
-            build_arch: linux/arm/v6
           - arch: armv7
             build_arch: linux/arm/v7
     
