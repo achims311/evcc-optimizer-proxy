@@ -1,15 +1,10 @@
 FROM python:3.12-slim
 
-# Install build dependencies and tools for all architectures
+# amd64/aarch64 have prebuilt manylinux wheels for all deps, no compiler needed
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     xz-utils \
     wget \
-    build-essential \
-    python3-dev \
-    libffi-dev \
-    libyaml-dev \
-    libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install s6-overlay for service management (architecture-aware)
