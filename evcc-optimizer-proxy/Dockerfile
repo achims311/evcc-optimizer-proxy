@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y \
     wget \
     build-essential \
     python3-dev \
+    libffi-dev \
+    libyaml-dev \
+    libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install s6-overlay for service management (architecture-aware)
