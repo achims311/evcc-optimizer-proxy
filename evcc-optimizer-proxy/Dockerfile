@@ -24,8 +24,6 @@ RUN case "$(dpkg --print-architecture)" in \
       wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz -O /tmp/s6-overlay-arch.tar.xz;; \
     arm64) \
       wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-aarch64.tar.xz -O /tmp/s6-overlay-arch.tar.xz;; \
-    armhf) \
-      wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-armhf.tar.xz -O /tmp/s6-overlay-arch.tar.xz;; \
     *) echo "Unsupported architecture"; exit 1;; \
   esac && \
   tar -C / -Jxpf /tmp/s6-overlay-arch.tar.xz && \
