@@ -17,7 +17,7 @@ Ein HTTP-Proxy für den EVCC Optimizer, der eingehende Anfragen automatisch modi
 1. Füge das Repository zu Home Assistant hinzu:
    - Home Assistant → Einstellungen → Add-ons & Automationen → Add-on Store
    - Klicke auf die drei Punkte (⋮) → "Repositories"
-   - Gib die Repository-URL ein: `https://github.com/dein-username/evcc-optimizer-proxy`
+   - Gib die Repository-URL ein: `https://github.com/achims311/evcc-optimizer-proxy`
    - Klicke auf "Hinzufügen"
 
 2. Installiere das Add-on:
