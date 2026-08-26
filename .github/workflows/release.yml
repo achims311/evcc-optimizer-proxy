@@ -11,10 +11,10 @@ jobs:
       contents: write
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.1.7
     
     - name: Create Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v2.0.8
       with:
         draft: false
         prerelease: false
