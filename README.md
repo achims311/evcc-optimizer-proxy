@@ -43,11 +43,11 @@ Die Konfiguration erfolgt über die Home Assistant UI im Add-on-Einstellungen:
 
 ```yaml
 target_url: "https://optimizer.evcc.io"
-proxy_url: null
-proxy_username: null
 use_system_proxy: true
 log_level: "INFO"
 ```
+
+`proxy_url` und `proxy_username` sind optional und können leer bleiben.
 
 ### Proxy-Konfiguration
 

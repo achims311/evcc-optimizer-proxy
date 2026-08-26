@@ -16,8 +16,8 @@ class ConfigHandler:
     # Default configuration
     DEFAULTS = {
         'target_url': 'https://optimizer.evcc.io',
-        'proxy_url': None,
-        'proxy_username': None,
+        'proxy_url': '',
+        'proxy_username': '',
         'proxy_password': None,
         'use_system_proxy': True,
         'log_level': 'INFO'
@@ -37,6 +37,7 @@ class ConfigHandler:
                 with open(options_file, 'r') as f:
                     ha_options = json.load(f)
                     self.config.update(ha_options)
+                    self._normalize_config()
                     logger.info("Configuration loaded from Home Assistant options")
                     return
             except Exception as e:
@@ -63,6 +64,14 @@ class ConfigHandler:
                 
                 self.config[config_key] = value
                 logger.debug(f"Set {config_key} from environment")
+
+        self._normalize_config()
+
+    def _normalize_config(self):
+        """Normalize optional string values from Home Assistant."""
+        for key in ('proxy_url', 'proxy_username'):
+            if self.config.get(key) is None:
+                self.config[key] = ''
     
     def get(self, key, default=None):
         """Get a configuration value."""

@@ -133,7 +133,7 @@ Aktuelle Konfiguration abrufen.
 ```json
 {
   "target_url": "https://optimizer.evcc.io",
-  "proxy_url": null,
+  "proxy_url": "",
   "use_system_proxy": true,
   "log_level": "INFO"
 }
