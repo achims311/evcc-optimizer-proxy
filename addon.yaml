@@ -1,0 +1,33 @@
+name: EVCC Optimizer Proxy
+description: HTTP Proxy für EVCC Optimizer mit Request-Modifikation. Setzt charge_from_grid und export_to_grid automatisch auf true.
+version: 1.0.0
+slug: evcc-optimizer-proxy
+image: ghcr.io/username/evcc-optimizer-proxy-{arch}
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: services
+boot: auto
+ports:
+  8080/tcp: 8080
+hassio_api: true
+homeassistant_api: true
+options:
+  target_url: "https://optimizer.evcc.io"
+  proxy_url: null
+  proxy_username: null
+  use_system_proxy: true
+  log_level: "INFO"
+schema:
+  target_url: str
+  proxy_url: str?
+  proxy_username: str?
+  use_system_proxy: bool
+  log_level: select(INFO,DEBUG,WARNING,ERROR)?
+environment:
+  TZ: UTC
+privileged: []
+webui: http://[HOST]:[PORT:8080]

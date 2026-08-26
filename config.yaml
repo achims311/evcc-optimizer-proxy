@@ -1,0 +1,5 @@
+target_url: "https://optimizer.evcc.io"
+proxy_url: null
+proxy_username: null
+use_system_proxy: true
+log_level: "INFO"

@@ -1,0 +1,37 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured"
+    },
+    "error": {
+      "invalid_url": "Invalid target URL",
+      "invalid_proxy": "Invalid proxy URL"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "target_url": "EVCC Optimizer Target URL",
+          "proxy_url": "HTTP Proxy URL (optional)",
+          "proxy_username": "Proxy Username (for NTLM)",
+          "use_system_proxy": "Use System Proxy",
+          "log_level": "Log Level"
+        },
+        "description": "Configure the EVCC Optimizer Proxy add-on",
+        "title": "EVCC Optimizer Proxy"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "target_url": "EVCC Optimizer Target URL",
+          "proxy_url": "HTTP Proxy URL (optional)",
+          "proxy_username": "Proxy Username (for NTLM)",
+          "use_system_proxy": "Use System Proxy",
+          "log_level": "Log Level"
+        }
+      }
+    }
+  }
+}

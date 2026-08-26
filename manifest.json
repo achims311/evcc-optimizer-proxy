@@ -1,0 +1,4 @@
+name: EVCC Optimizer Proxy
+description: HTTP proxy for EVCC Optimizer with automatic request modification
+version: 1.0.0
+home_assistant_minimum_version: 2024.1.0
