@@ -26,18 +26,16 @@ RUN case "$(dpkg --print-architecture)" in \
       wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-aarch64.tar.xz -O /tmp/s6-overlay-arch.tar.xz;; \
     armhf) \
       wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-armhf.tar.xz -O /tmp/s6-overlay-arch.tar.xz;; \
-    armel) \
-      wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-arm.tar.xz -O /tmp/s6-overlay-arch.tar.xz;; \
     *) echo "Unsupported architecture"; exit 1;; \
   esac && \
   tar -C / -Jxpf /tmp/s6-overlay-arch.tar.xz && \
   rm /tmp/s6-overlay-arch.tar.xz
 
-# Install Python dependencies with verbose output for debugging
+# Install Python dependencies
 WORKDIR /app
 COPY rootfs/app/requirements.txt /app/
 RUN pip install --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir -v -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy application
 COPY rootfs/app/*.py /app/
