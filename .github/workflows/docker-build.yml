@@ -25,8 +25,6 @@ jobs:
             build_arch: linux/arm/v6
           - arch: armv7
             build_arch: linux/arm/v7
-          - arch: i386
-            build_arch: linux/386
     
     steps:
     - uses: actions/checkout@v4
