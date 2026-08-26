@@ -5,6 +5,7 @@ ARG S6_OVERLAY_VERSION=3.1.6.2
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     xz-utils \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz -O /tmp/s6-overlay-noarch.tar.xz && \
