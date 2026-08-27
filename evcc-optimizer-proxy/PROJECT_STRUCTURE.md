@@ -132,7 +132,7 @@ Aktuelle Konfiguration abrufen.
 **Antwort:**
 ```json
 {
-  "target_url": "https://evopt.evcc.io",
+  "target_url": "https://optimizer.evcc.io",
   "proxy_url": "",
   "use_system_proxy": true,
   "log_level": "INFO"

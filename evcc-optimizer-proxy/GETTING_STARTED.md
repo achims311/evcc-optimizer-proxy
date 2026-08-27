@@ -79,7 +79,7 @@ python test_client.py
 ```bash
 docker build -t evcc-optimizer-proxy .
 docker run -p 8080:8080 \
-   -e TARGET_URL="https://evopt.evcc.io" \
+   -e TARGET_URL="https://optimizer.evcc.io" \
   -e LOG_LEVEL="DEBUG" \
   evcc-optimizer-proxy
 
@@ -119,7 +119,7 @@ curl -X POST http://localhost:8080/proxy \
 ## 📋 Konfigurationsoptionen
 
 ### Pflichtangaben
-- **target_url**: EVCC Optimizer Server (default: `https://evopt.evcc.io`)
+- **target_url**: EVCC Optimizer Server (default: `https://optimizer.evcc.io`)
 
 ### Optional
 - **proxy_url**: HTTP/HTTPS Proxy URL

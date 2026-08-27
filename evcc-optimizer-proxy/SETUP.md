@@ -59,7 +59,7 @@ docker build -t evcc-optimizer-proxy .
 
 # Container starten
 docker run -p 8080:8080 \
-   -e TARGET_URL="https://evopt.evcc.io" \
+   -e TARGET_URL="https://optimizer.evcc.io" \
   -e LOG_LEVEL="DEBUG" \
   evcc-optimizer-proxy
 
@@ -72,7 +72,7 @@ python test_client.py
 ### Basis-Konfiguration (Pflichtangaben)
 
 - **Target URL**: URL des EVCC Optimizer Servers
-   - Default: `https://evopt.evcc.io`
+   - Default: `https://optimizer.evcc.io`
   - Beispiel: `https://my-evcc-server.example.com`
 
 ### Proxy-Konfiguration (Optional)
@@ -165,7 +165,7 @@ python test_client.py http://localhost:8080
 
 1. **Proxy-URL überprüfen:**
    ```bash
-   curl -x http://proxy:port https://evopt.evcc.io
+   curl -x http://proxy:port https://optimizer.evcc.io
    ```
 
 2. **NTLM-Authentifizierung testen:**

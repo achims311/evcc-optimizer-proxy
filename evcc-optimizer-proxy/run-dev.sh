@@ -21,7 +21,7 @@ pip install -r rootfs/app/requirements.txt
 # Set environment variables
 export FLASK_APP=rootfs/app/main.py
 export FLASK_ENV=development
-export TARGET_URL=${TARGET_URL:-"https://evopt.evcc.io"}
+export TARGET_URL=${TARGET_URL:-"https://optimizer.evcc.io"}
 export LOG_LEVEL=${LOG_LEVEL:-"DEBUG"}
 export USE_SYSTEM_PROXY=${USE_SYSTEM_PROXY:-"true"}
 

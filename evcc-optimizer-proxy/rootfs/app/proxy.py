@@ -84,7 +84,7 @@ class EvccProxy:
         logger.info("Request modification completed")
         return modified_data
     
-    def forward_request(self, data, target_path=''):
+    def forward_request(self, data, target_path='', headers=None):
         """
         Forward the modified request to the EVCC Optimizer server.
         
@@ -102,11 +102,19 @@ class EvccProxy:
                 destination_url = f"{destination_url}/{target_path.lstrip('/')}"
 
             logger.info(f"Forwarding request to {destination_url}")
+            logger.debug(
+                "Request transport settings: trust_env=%s, configured_proxies=%s, "
+                "proxy_auth=%s",
+                self.session.trust_env,
+                bool(self.session.proxies),
+                bool(self.session.auth)
+            )
             
             # Send POST request with JSON data
             response = self.session.post(
                 destination_url,
                 json=data,
+                headers=headers,
                 timeout=30,
                 verify=True  # Verify SSL certificates
             )
@@ -122,6 +130,7 @@ class EvccProxy:
             
         except requests.exceptions.RequestException as e:
             logger.error(f"Error forwarding request: {str(e)}")
+            logger.debug("Request failure details", exc_info=True)
             error_response = {
                 'error': 'Failed to forward request to EVCC Optimizer',
                 'details': str(e)

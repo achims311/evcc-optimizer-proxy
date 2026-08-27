@@ -15,7 +15,7 @@ class ConfigHandler:
     
     # Default configuration
     DEFAULTS = {
-        'target_url': 'https://evopt.evcc.io',
+        'target_url': 'https://optimizer.evcc.io',
         'proxy_url': '',
         'proxy_username': '',
         'proxy_password': None,

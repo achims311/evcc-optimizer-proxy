@@ -25,7 +25,7 @@ if [ $? -eq 0 ]; then
     echo "✓ Build successful!"
     echo ""
     echo "To run the image:"
-    echo "  docker run -p 8080:8080 -e TARGET_URL='https://evopt.evcc.io' $REGISTRY/$USERNAME/$IMAGE_NAME:$VERSION"
+    echo "  docker run -p 8080:8080 -e TARGET_URL='https://optimizer.evcc.io' $REGISTRY/$USERNAME/$IMAGE_NAME:$VERSION"
 else
     echo "✗ Build failed!"
     exit 1

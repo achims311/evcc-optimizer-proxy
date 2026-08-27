@@ -12,7 +12,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - TARGET_URL=https://evopt.evcc.io
+      - TARGET_URL=https://optimizer.evcc.io
       - LOG_LEVEL=DEBUG
       - USE_SYSTEM_PROXY=true
       # For NTLM proxy testing:
