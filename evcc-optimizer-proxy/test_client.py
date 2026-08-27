@@ -42,7 +42,7 @@ def load_sample_request():
         }
 
 
-def test_proxy(proxy_url='http://localhost:8080'):
+def run_proxy_test(proxy_url='http://localhost:8080'):
     """Test the proxy with a sample request."""
     print("=" * 60)
     print("EVCC Optimizer Proxy Test Client")
@@ -91,7 +91,7 @@ def test_proxy(proxy_url='http://localhost:8080'):
     return True
 
 
-def test_health(proxy_url='http://localhost:8080'):
+def run_health_test(proxy_url='http://localhost:8080'):
     """Test the health endpoint."""
     print("\n" + "=" * 60)
     print("Testing Health Endpoint")
@@ -114,7 +114,7 @@ def test_health(proxy_url='http://localhost:8080'):
         return False
 
 
-def test_config(proxy_url='http://localhost:8080'):
+def run_config_test(proxy_url='http://localhost:8080'):
     """Test the config endpoint."""
     print("\n" + "=" * 60)
     print("Testing Configuration Endpoint")
@@ -143,9 +143,9 @@ if __name__ == '__main__':
     proxy_url = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8080'
     
     results = []
-    results.append(('Health Check', test_health(proxy_url)))
-    results.append(('Config Endpoint', test_config(proxy_url)))
-    results.append(('Proxy Request', test_proxy(proxy_url)))
+    results.append(('Health Check', run_health_test(proxy_url)))
+    results.append(('Config Endpoint', run_config_test(proxy_url)))
+    results.append(('Proxy Request', run_proxy_test(proxy_url)))
     
     print("\n" + "=" * 60)
     print("Test Summary")

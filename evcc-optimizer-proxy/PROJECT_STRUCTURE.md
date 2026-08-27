@@ -122,7 +122,7 @@ Proxy-Endpoint für EVCC Optimizer Requests. Der Zielpfad wird unverändert an d
 
 **Modifikation:**
 - Setzt `charge_from_grid: true` für alle Batterien
-- Setzt `export_to_grid: true` für alle Batterien
+- Setzt `discharge_to_grid: true` für alle Batterien
 - Leitet modifizierten Request an `target_url` weiter
 - Gibt Antwort unverändert zurück
 

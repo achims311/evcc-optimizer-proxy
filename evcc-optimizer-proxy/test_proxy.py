@@ -7,6 +7,7 @@ import sys
 import json
 import requests
 from pathlib import Path
+from unittest.mock import patch
 
 # Add app directory to path
 sys.path.insert(0, str(Path(__file__).parent / 'rootfs' / 'app'))
@@ -58,10 +59,9 @@ def test_request_modification():
     
     # Verify modifications
     assert modified_data['batteries'][0]['charge_from_grid'] == True, "charge_from_grid should be True"
-    assert modified_data['batteries'][0]['export_to_grid'] == True, "export_to_grid should be True"
+    assert modified_data['batteries'][0]['discharge_to_grid'] == True, "discharge_to_grid should be True"
     
     print("\n✓ Request modification test passed!")
-    return True
 
 
 def test_config_loading():
@@ -81,7 +81,40 @@ def test_config_loading():
         assert key in config.get_config(), f"Missing config key: {key}"
     
     print("\n✓ Configuration loading test passed!")
-    return True
+
+
+def test_proxy_forwards_path_headers_and_modified_body():
+    """Test forwarding optimizer paths, end-to-end headers, and modified data."""
+    from main import app
+
+    request_data = {
+        'batteries': [{
+            'charge_from_grid': False,
+            'discharge_to_grid': False,
+        }]
+    }
+    with patch('main.proxy.forward_request', return_value=(200, {'optimized': True})) as forward_request:
+        response = app.test_client().post(
+            '/proxy/optimize/charge-schedule',
+            json=request_data,
+            headers={
+                'Authorization': 'Bearer test-token',
+                'Connection': 'keep-alive',
+                'X-Request-ID': 'request-123',
+            }
+        )
+
+    assert response.status_code == 200
+    assert response.get_json() == {'optimized': True}
+    forwarded_data, target_path, forwarded_headers = forward_request.call_args.args
+    assert target_path == 'optimize/charge-schedule'
+    assert forwarded_data['batteries'][0]['charge_from_grid'] is True
+    assert forwarded_data['batteries'][0]['discharge_to_grid'] is True
+    assert forwarded_headers['Authorization'] == 'Bearer test-token'
+    assert forwarded_headers['X-Request-Id'] == 'request-123'
+    assert 'Host' not in forwarded_headers
+    assert 'Connection' not in forwarded_headers
+    assert 'Content-Length' not in forwarded_headers
 
 
 if __name__ == '__main__':

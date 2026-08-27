@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 EVCC Optimizer Proxy - Home Assistant Add-on
-Modifies EVCC Optimizer requests to ensure charge_from_grid and export_to_grid are true.
+Modifies EVCC Optimizer requests to ensure charge_from_grid and discharge_to_grid are true.
 """
 
 import json
@@ -75,7 +75,7 @@ def health():
 def handle_proxy(target_path):
     """
     Main proxy endpoint that receives and forwards requests to EVCC Optimizer.
-    Modifies the request to ensure charge_from_grid and export_to_grid are true.
+    Modifies the request to ensure charge_from_grid and discharge_to_grid are true.
     """
     try:
         # Parse incoming request data

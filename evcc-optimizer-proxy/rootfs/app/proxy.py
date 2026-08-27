@@ -53,7 +53,7 @@ class EvccProxy:
     
     def modify_request(self, data):
         """
-        Modify the request to ensure charge_from_grid and export_to_grid are true.
+        Modify the request to ensure charge_from_grid and discharge_to_grid are true.
         
         Args:
             data (dict): The original request data
@@ -72,14 +72,14 @@ class EvccProxy:
             logger.debug(f"Battery before modification: {battery}")
             
             battery['charge_from_grid'] = True
-            battery['export_to_grid'] = True
+            battery['discharge_to_grid'] = True
             
             logger.debug(f"Battery after modification: {battery}")
         
         # Also check if there's a single battery object (not in array)
         if 'battery' in modified_data and isinstance(modified_data['battery'], dict):
             modified_data['battery']['charge_from_grid'] = True
-            modified_data['battery']['export_to_grid'] = True
+            modified_data['battery']['discharge_to_grid'] = True
         
         logger.info("Request modification completed")
         return modified_data

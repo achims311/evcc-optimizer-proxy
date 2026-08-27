@@ -1,6 +1,7 @@
 name: EVCC Optimizer Proxy
-description: HTTP Proxy für EVCC Optimizer mit Request-Modifikation. Setzt charge_from_grid und export_to_grid automatisch auf true.
-version: 1.0.16
+description: HTTP Proxy für EVCC Optimizer mit Request-Modifikation. Setzt charge_from_grid und discharge_to_grid automatisch auf true.
+version: 1.0.17
+changelog: "https://github.com/achims311/evcc-optimizer-proxy/blob/main/CHANGELOG.md"
 slug: evcc-optimizer-proxy
 image: ghcr.io/achims311/evcc-optimizer-proxy-{arch}
 arch:

@@ -13,7 +13,7 @@ Dein Home Assistant Addon für die EVCC Optimizer Request-Modifikation ist berei
 ## ✨ Features
 
 ✅ **HTTP Proxy Server** - Empfängt GET/POST Requests  
-✅ **Automatische Request-Modifikation** - Setzt `charge_from_grid` und `export_to_grid` auf true  
+✅ **Automatische Request-Modifikation** - Setzt `charge_from_grid` und `discharge_to_grid` auf true
 ✅ **NTLM Proxy-Support** - Firmennetzwerke mit Authentifizierung  
 ✅ **Windows Systemproxy** - Automatische Erkennung ohne Passworteingabe  
 ✅ **Home Assistant Integration** - Native Add-on Integration mit Auto-Updates  
@@ -115,6 +115,19 @@ curl -X POST http://localhost:8080/proxy \
   -H "Content-Type: application/json" \
   -d @EvccOptimizerRequest.json
 ```
+
+## Tests
+
+Create and activate the project-local virtual environment, then run the isolated test suite:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r rootfs/app/requirements.txt -r requirements-dev.txt
+python -m pytest -q
+```
+
+Visual Studio Code uses `.venv/bin/python` and discovers the same tests in the Testing view through `.vscode/settings.json`. Use the Testing view to run or debug individual tests.
 
 ## 📋 Konfigurationsoptionen
 

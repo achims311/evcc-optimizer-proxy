@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  validate-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          config_version="$(sed -n 's/^version: //p' config.yaml)"
+          test "$config_version" = "$version"
+          grep -q "^## $version$" CHANGELOG.md
+
+      - name: Validate Python syntax
+        run: python3 -m py_compile rootfs/app/*.py
+
+      - name: Install test dependencies
+        run: pip install -r rootfs/app/requirements.txt -r requirements-dev.txt
+
+      - name: Run tests
+        run: pytest -q
+
+  create-release:
+    needs: validate-release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: false
+          prerelease: false
+          generate_release_notes: true
