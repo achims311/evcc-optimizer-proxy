@@ -33,8 +33,9 @@ def health():
     return jsonify({'status': 'healthy'}), 200
 
 
-@app.route('/proxy', methods=['GET', 'POST'])
-def handle_proxy():
+@app.route('/proxy', defaults={'target_path': ''}, methods=['GET', 'POST'])
+@app.route('/proxy/<path:target_path>', methods=['GET', 'POST'])
+def handle_proxy(target_path):
     """
     Main proxy endpoint that receives and forwards requests to EVCC Optimizer.
     Modifies the request to ensure charge_from_grid and export_to_grid are true.
@@ -56,7 +57,7 @@ def handle_proxy():
         logger.debug(f"Modified request: {json.dumps(modified_data, indent=2)}")
         
         # Forward to EVCC Optimizer
-        response_status, response_data = proxy.forward_request(modified_data)
+        response_status, response_data = proxy.forward_request(modified_data, target_path)
         
         logger.debug(f"Response status: {response_status}")
         

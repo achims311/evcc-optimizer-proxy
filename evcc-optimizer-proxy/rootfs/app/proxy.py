@@ -84,7 +84,7 @@ class EvccProxy:
         logger.info("Request modification completed")
         return modified_data
     
-    def forward_request(self, data):
+    def forward_request(self, data, target_path=''):
         """
         Forward the modified request to the EVCC Optimizer server.
         
@@ -97,11 +97,15 @@ class EvccProxy:
         target_url = self.config.get('target_url')
         
         try:
-            logger.info(f"Forwarding request to {target_url}")
+            destination_url = target_url.rstrip('/')
+            if target_path:
+                destination_url = f"{destination_url}/{target_path.lstrip('/')}"
+
+            logger.info(f"Forwarding request to {destination_url}")
             
             # Send POST request with JSON data
             response = self.session.post(
-                target_url,
+                destination_url,
                 json=data,
                 timeout=30,
                 verify=True  # Verify SSL certificates

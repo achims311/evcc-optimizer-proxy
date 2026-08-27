@@ -15,7 +15,7 @@ class ConfigHandler:
     
     # Default configuration
     DEFAULTS = {
-        'target_url': 'https://optimizer.evcc.io',
+        'target_url': 'https://evopt.evcc.io',
         'proxy_url': '',
         'proxy_username': '',
         'proxy_password': None,
@@ -92,7 +92,28 @@ class ConfigHandler:
                 if key in self.DEFAULTS:
                     self.config[key] = value
                     logger.info(f"Updated configuration: {key}")
+            self._save_config()
             return True
         except Exception as e:
             logger.error(f"Error updating configuration: {e}")
             raise
+
+    def _save_config(self):
+        """Persist configuration changes for subsequent application starts."""
+        options_file = '/data/options.json'
+        saved_config = {}
+
+        if os.path.exists(options_file):
+            with open(options_file, 'r') as f:
+                saved_config = json.load(f)
+
+        saved_config.update({
+            key: self.config[key]
+            for key in self.DEFAULTS
+            if key != 'proxy_password' and key in self.config
+        })
+
+        temporary_file = f'{options_file}.tmp'
+        with open(temporary_file, 'w') as f:
+            json.dump(saved_config, f)
+        os.replace(temporary_file, options_file)

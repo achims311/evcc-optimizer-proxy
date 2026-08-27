@@ -59,7 +59,7 @@ evcc-optimizer-proxy/
 - Flask Web-Server
 - Definiert API-Endpoints:
   - `/health` - Health Check
-  - `/proxy` - Haupt-Proxy-Endpoint
+  - `/proxy/<zielpfad>` - Proxy-Endpoint mit Weiterleitung des Zielpfads
   - `/config` - Konfigurationsverwaltung
   - `/` - Root-Endpoint
 
@@ -108,8 +108,8 @@ Status des Proxy überprüfen.
 {"status": "healthy"}
 ```
 
-### POST /proxy
-Proxy-Endpoint für EVCC Optimizer Requests.
+### POST /proxy/<zielpfad>
+Proxy-Endpoint für EVCC Optimizer Requests. Der Zielpfad wird unverändert an die konfigurierte `target_url` angehängt, zum Beispiel `/proxy/optimize/charge-schedule`.
 
 **Request:**
 ```json
@@ -132,7 +132,7 @@ Aktuelle Konfiguration abrufen.
 **Antwort:**
 ```json
 {
-  "target_url": "https://optimizer.evcc.io",
+  "target_url": "https://evopt.evcc.io",
   "proxy_url": "",
   "use_system_proxy": true,
   "log_level": "INFO"
