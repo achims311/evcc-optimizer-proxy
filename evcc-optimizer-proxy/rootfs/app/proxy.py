@@ -53,7 +53,7 @@ class EvccProxy:
     
     def modify_request(self, data):
         """
-        Modify the request to ensure charge_from_grid and discharge_to_grid are true.
+        Modify the request using the configured battery and efficiency options.
         
         Args:
             data (dict): The original request data
@@ -80,6 +80,11 @@ class EvccProxy:
         if 'battery' in modified_data and isinstance(modified_data['battery'], dict):
             modified_data['battery']['charge_from_grid'] = True
             modified_data['battery']['discharge_to_grid'] = True
+
+        for key in ('eta_c', 'eta_d'):
+            value = self.config.get(key)
+            if isinstance(value, (int, float)) and not isinstance(value, bool) and 0 < value < 1:
+                modified_data[key] = value
         
         logger.info("Request modification completed")
         return modified_data

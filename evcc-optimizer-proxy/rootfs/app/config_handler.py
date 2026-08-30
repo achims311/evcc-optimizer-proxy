@@ -20,7 +20,9 @@ class ConfigHandler:
         'proxy_username': '',
         'proxy_password': None,
         'use_system_proxy': True,
-        'log_level': 'INFO'
+        'log_level': 'INFO',
+        'eta_c': None,
+        'eta_d': None
     }
     
     def __init__(self):
@@ -51,7 +53,9 @@ class ConfigHandler:
             'PROXY_USERNAME': 'proxy_username',
             'PROXY_PASSWORD': 'proxy_password',
             'USE_SYSTEM_PROXY': 'use_system_proxy',
-            'LOG_LEVEL': 'log_level'
+            'LOG_LEVEL': 'log_level',
+            'ETA_C': 'eta_c',
+            'ETA_D': 'eta_d'
         }
         
         for env_var, config_key in env_mappings.items():
@@ -72,6 +76,23 @@ class ConfigHandler:
         for key in ('proxy_url', 'proxy_username'):
             if self.config.get(key) is None:
                 self.config[key] = ''
+
+        for key in ('eta_c', 'eta_d'):
+            value = self.config.get(key)
+            if value in (None, ''):
+                self.config[key] = None
+                continue
+
+            try:
+                value = float(value)
+            except (TypeError, ValueError):
+                value = None
+
+            if value is None or not 0 < value < 1:
+                logger.warning("Ignoring invalid %s value; it must be between 0 and 1", key)
+                self.config[key] = None
+            else:
+                self.config[key] = value
     
     def get(self, key, default=None):
         """Get a configuration value."""
@@ -92,6 +113,7 @@ class ConfigHandler:
                 if key in self.DEFAULTS:
                     self.config[key] = value
                     logger.info(f"Updated configuration: {key}")
+            self._normalize_config()
             self._save_config()
             return True
         except Exception as e:

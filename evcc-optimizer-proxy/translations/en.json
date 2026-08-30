@@ -14,7 +14,9 @@
           "proxy_url": "HTTP Proxy URL (optional)",
           "proxy_username": "Proxy Username (for NTLM)",
           "use_system_proxy": "Use System Proxy",
-          "log_level": "Log Level"
+          "log_level": "Log Level",
+          "eta_c": "Charging efficiency eta_c (optional, > 0 and < 1)",
+          "eta_d": "Discharging efficiency eta_d (optional, > 0 and < 1)"
         },
         "description": "Configure the EVCC Optimizer Proxy add-on",
         "title": "EVCC Optimizer Proxy"
@@ -29,7 +31,9 @@
           "proxy_url": "HTTP Proxy URL (optional)",
           "proxy_username": "Proxy Username (for NTLM)",
           "use_system_proxy": "Use System Proxy",
-          "log_level": "Log Level"
+          "log_level": "Log Level",
+          "eta_c": "Charging efficiency eta_c (optional, > 0 and < 1)",
+          "eta_d": "Discharging efficiency eta_d (optional, > 0 and < 1)"
         }
       }
     }

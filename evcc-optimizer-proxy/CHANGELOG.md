@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.18
+
+- Add optional Home Assistant settings for overriding charging and discharging efficiency values.
+
 ## 1.0.17
 
 - Replace `export_to_grid` with `discharge_to_grid` in optimizer requests.

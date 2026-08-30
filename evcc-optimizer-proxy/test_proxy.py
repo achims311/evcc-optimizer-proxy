@@ -16,6 +16,13 @@ from proxy import EvccProxy
 from config_handler import ConfigHandler
 
 
+class ProxyConfig(dict):
+    """Minimal configuration object for proxy unit tests."""
+
+    def get(self, key, default=None):
+        return super().get(key, default)
+
+
 def test_request_modification():
     """Test the request modification logic."""
     print("=" * 50)
@@ -62,6 +69,23 @@ def test_request_modification():
     assert modified_data['batteries'][0]['discharge_to_grid'] == True, "discharge_to_grid should be True"
     
     print("\n✓ Request modification test passed!")
+
+
+def test_efficiency_overrides():
+    """Test optional eta_c and eta_d request overrides."""
+    data = {'eta_c': 0.9, 'eta_d': 0.8}
+
+    unchanged = EvccProxy(ProxyConfig()).modify_request(data)
+    assert unchanged['eta_c'] == 0.9
+    assert unchanged['eta_d'] == 0.8
+
+    modified = EvccProxy(ProxyConfig(eta_c=0.95, eta_d=0.85)).modify_request(data)
+    assert modified['eta_c'] == 0.95
+    assert modified['eta_d'] == 0.85
+
+    boundary_values = EvccProxy(ProxyConfig(eta_c=0, eta_d=1)).modify_request(data)
+    assert boundary_values['eta_c'] == 0.9
+    assert boundary_values['eta_d'] == 0.8
 
 
 def test_config_loading():
